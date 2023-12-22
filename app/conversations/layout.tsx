@@ -7,12 +7,12 @@ export default async function ConversationLaoyt({
 } : {
     children:React.ReactNode
 }) {
-    const conversation = await getConversations()
+    const conversations = await getConversations()
     return(
         <Sidebar>
             <div className="h-full">
                 <ConversationList 
-                initialItems={[conversation]}/>
+                initialItems={conversations}/>
                 {children}
             </div>
         </Sidebar>
