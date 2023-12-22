@@ -11,21 +11,21 @@ import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/components/Avatar";
 
 interface ConversationBoxProps {
-  data: FullConversationType;
+  data: FullConversationType,
   selected?: boolean;
 }
 
-const ConversationBox: React.FC<ConversationBoxProps> = ({
-  data,
-  selected,
+const ConversationBox: React.FC<ConversationBoxProps> = ({ 
+  data, 
+  selected 
 }) => {
   const otherUser = useOtherUser(data);
   const session = useSession();
   const router = useRouter();
 
   const handleClick = useCallback(() => {
-    router.push(`/conversation/${data.id}`);
-  }, [data.id, router]);
+    router.push(`/conversations/${data.id}`);
+  }, [data, router]);
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
@@ -33,10 +33,9 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     return messages[messages.length - 1];
   }, [data.messages]);
 
-  const userEmail = useMemo(() => {
-    return session.data?.user?.email;
-  }, [session.data?.user?.email]);
-
+  const userEmail = useMemo(() => session.data?.user?.email,
+  [session.data?.user?.email]);
+  
   const hasSeen = useMemo(() => {
     if (!lastMessage) {
       return false;
@@ -48,19 +47,20 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
       return false;
     }
 
-    return seenArray.filter((user) => user.email === userEmail).length !== 0;
+    return seenArray
+      .filter((user) => user.email === userEmail).length !== 0;
   }, [userEmail, lastMessage]);
 
-  const lastMessegaText = useMemo(() => {
+  const lastMessageText = useMemo(() => {
     if (lastMessage?.image) {
-      return "Sent an image";
+      return 'Sent an image';
     }
 
     if (lastMessage?.body) {
-      return lastMessage.body;
+      return lastMessage?.body
     }
 
-    return "Started a conversation";
+    return 'Started a conversation';
   }, [lastMessage]);
 
   return (
@@ -115,7 +115,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               hasSeen ? "text-gray-500" : "text-black font-medium"
             )}
           >
-            {lastMessegaText}
+            {lastMessageText}
           </p>
         </div>
       </div>
