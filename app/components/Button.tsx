@@ -1,5 +1,3 @@
-"cliemt user";
-
 import clsx from "clsx";
 
 interface ButtonProps {

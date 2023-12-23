@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import useConversation from "@/app/hooks/useConversation";
 import { FullConversationType } from "@/app/types";
@@ -25,6 +25,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
     <aside
       className={clsx(
         `
+        bg-white
         fixed 
         inset-y-0 
         pb-20

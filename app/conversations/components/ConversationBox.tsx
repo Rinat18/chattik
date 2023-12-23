@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { FullConversationType } from "@/app/types";
 import { useCallback, useMemo } from "react";
@@ -25,7 +25,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
 
   const handleClick = useCallback(() => {
     router.push(`/conversations/${data.id}`);
-  }, [data, router]);
+  }, [data.id, router]);
 
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
