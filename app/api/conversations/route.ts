@@ -1,86 +1,72 @@
-import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
+
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
-export async function POST(request: Request) {
+export async function POST(
+  request: Request,
+) {
   try {
     const currentUser = await getCurrentUser();
     const body = await request.json();
-    const { userId, isGroup, members, name } = body;
+    const {
+      message,
+      image,
+      conversationId
+    } = body;
 
     if (!currentUser?.id || !currentUser?.email) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    if (isGroup && (!members || members.length < 2 || !name)) {
-      return new NextResponse("Invalid data", { status: 400 });
-    }
-
-    if (isGroup) {
-      const newConversation = await prisma.conversation.create({
-        data: {
-          name,
-          isGroup,
-          users: {
-            connect: [
-              ...members.map((member: { value: string }) => ({
-                id: member.value,
-              })),
-              {
-                id: currentUser.id,
-              },
-            ],
-          },
-        },
-        include: {
-          users: true,
-        },
-      });
-      return NextResponse.json(newConversation);
-    }
-
-    const existingConversations = await prisma.conversation.findMany({
-      where: {
-        OR: [
-          {
-            userIds: {
-              equals: [currentUser.id, userId],
-            },
-          },
-          {
-            userIds: {
-              equals: [userId, currentUser.id],
-            },
-          },
-        ],
+    const newMessage = await prisma.message.create({
+      include: {
+        seen: true,
+        sender: true
       },
+      data: {
+        body: message,
+        image: image,
+        conversation: {
+          connect: { id: conversationId }
+        },
+        sender: {
+          connect: { id: currentUser.id }
+        },
+        seen: {
+          connect: {
+            id: currentUser.id
+          }
+        },
+      }
     });
 
-    const singleConversation = existingConversations[0];
-
-    if (singleConversation) {
-      return NextResponse.json(singleConversation);
-    }
-
-    const newConversation = await prisma.conversation.create({
+    
+    const updatedConversation = await prisma.conversation.update({
+      where: {
+        id: conversationId
+      },
       data: {
-        users: {
-          connect: [
-            {
-              id: currentUser.id,
-            },
-            {
-              id: userId,
-            },
-          ],
-        },
+        lastMessageAt: new Date(),
+        messages: {
+          connect: {
+            id: newMessage.id
+          }
+        }
       },
       include: {
         users: true,
-      },
+        messages: {
+          include: {
+            seen: true
+          }
+        }
+      }
     });
-    return NextResponse.json(newConversation);
+
+    return NextResponse.json(newMessage)
   } catch (error) {
-    return new NextResponse("Internal Error", { status: 500 });
+    console.log(error, 'ERROR_MESSAGES')
+    return new NextResponse('Error', { status: 500 });
   }
 }
