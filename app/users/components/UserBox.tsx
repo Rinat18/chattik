@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "axios";
 import { use, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -25,6 +23,8 @@ const UserBox: React.FC<UserBoxProps> = ({ data }) => {
       })
       .finally(() => setIsLoading(false));
   }, [data, router]);
+
+  console.log("POIUYTREWSDFGHJK", data.id)
 
   return (
     <div

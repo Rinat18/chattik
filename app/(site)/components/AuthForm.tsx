@@ -50,7 +50,7 @@ const AuthForm = () => {
 
     if (variant === "REGISTER") {
       axios
-        .post("api/register", data)
+        .post("/api/register", data)
         .then(() => signIn("credentials", data))
         .catch(() => toast.error("Somthing wrong"))
         .finally(() => setIsLoading(false));
