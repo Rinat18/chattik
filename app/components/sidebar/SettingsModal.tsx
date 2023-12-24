@@ -5,13 +5,14 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { User } from "@prisma/client";
-import { CldUploadButton } from 'next-cloudinary';
+import { CldUploadButton } from "next-cloudinary";
 
 import Input from "../inputs/input";
 import Modal from "../modals/Modal";
 import Button from "../Button";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
+import { HiPhoto } from "react-icons/hi2";
 
 interface SettingsModalProps {
   isOpen?: boolean;
@@ -114,16 +115,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     }
                     alt="Avatar"
                   />
-                  <CldUploadButton 
-                    options={{ maxFiles: 1 }} 
-                    onUpload={handleUpload} 
-                    uploadPreset="pgc9ehd5"
+                  <CldUploadButton
+                    options={{ maxFiles: 1 }}
+                    onUpload={handleUpload}
+                    uploadPreset="bcspyf5d"
                   >
-                    <Button
-                      disabled={isLoading}
-                      secondary
-                      type="button"
-                    >
+                    <Button disabled={isLoading} secondary type="button">
                       Change
                     </Button>
                   </CldUploadButton>
