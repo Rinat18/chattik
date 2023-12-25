@@ -77,7 +77,7 @@ const AuthForm = () => {
       })
       .then((callback) => {
         if (callback?.error) {
-          toast.error('Invalid credentials!');
+          toast.error('Invalid credentials3!');
         }
 
         if (callback?.ok) {
@@ -94,7 +94,7 @@ const AuthForm = () => {
     signIn(action, { redirect: false })
       .then((callback) => {
         if (callback?.error) {
-          toast.error('Invalid credentials!');
+          toast.error('Invalid credentials4!');
         }
 
         if (callback?.ok) {
