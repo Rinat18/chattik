@@ -31,8 +31,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         lg:w-20 
         xl:px-6
         lg:overflow-y-auto 
-        lg:bg-white 
-        lg:border-r-[1px]
+        lg:bg-[#FFF0E9]
         lg:pb-4
         lg:flex
         lg:flex-col
@@ -57,7 +56,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
             onClick={() => setIsOpen(true)} 
             className="cursor-pointer hover:opacity-75 transition"
           >
-            <Avatar user={currentUser} />
+            {/* <Avatar/> */}
           </div>
         </nav>
       </div>

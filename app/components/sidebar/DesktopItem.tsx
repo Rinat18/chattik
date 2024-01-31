@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
+import Avatar from "../Avatar";
 
 interface DesktopItemProps {
   label: string;
