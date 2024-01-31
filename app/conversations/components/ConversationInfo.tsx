@@ -43,7 +43,7 @@ const ConversationInfo: React.FC<ConversationInfo> = ({
       >
         <div className="flex items-center justify-center">
           <Avatar />
-          <p className="ml-2 text-slate-200">Kan Olesya</p>
+          <p className="ml-2 text-slate-200">Olesya</p>
         </div>
       </div>
 

@@ -75,15 +75,15 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
                 text-gray-900
               "
               >
-                Create a group chat
+                Create a new chat
               </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              Create a chat with more than 2 people.
+            Сhoose the assistant who best suits the given question.
             </p>
             <div className="mt-10 flex flex-col gap-y-8">
               <Input
                 disabled={isLoading}
-                label="Name" 
+                label="Name chat" 
                 id="name" 
                 errors={errors} 
                 required 
@@ -91,7 +91,7 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
               />
               <Select
                 disabled={isLoading}
-                label="Members" 
+                label="Choose AI assistant" 
                 options={users.map((user) => ({ 
                   value: user.id, 
                   label: user.name 
