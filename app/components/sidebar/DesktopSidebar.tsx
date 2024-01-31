@@ -21,7 +21,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
 
   return ( 
     <>
-      <SettingsModal currentUser={currentUser} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {/* <SettingsModal currentUser={currentUser} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <div className="
         hidden 
         lg:fixed 
@@ -37,8 +37,8 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         lg:flex-col
         justify-between
       ">
-        <nav className="mt-4 flex flex-col justify-between">
-          <ul role="list" className="flex flex-col items-center space-y-1">
+        <nav className="mt-4 flex flex-col justify-between"> */}
+          {/* <ul role="list" className="flex flex-col items-center space-y-1">
             {routes.map((item) => (
               <DesktopItem
                 key={item.label}
@@ -49,17 +49,17 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                 onClick={item.onClick}
               />
             ))}
-          </ul>
-        </nav>
+          </ul> */}
+        {/* </nav>
         <nav className="mt-4 flex flex-col justify-between items-center">
           <div 
             onClick={() => setIsOpen(true)} 
             className="cursor-pointer hover:opacity-75 transition"
           >
-            {/* <Avatar/> */}
+           { <Avatar/> }
           </div>
         </nav>
-      </div>
+      </div>  */}
     </>
    );
 }

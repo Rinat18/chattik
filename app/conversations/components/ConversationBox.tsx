@@ -3,13 +3,10 @@
 import { FullConversationType } from "@/app/types";
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Conversation, Message, User } from "@prisma/client";
 import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import useOtherUser from "@/app/hooks/useOtherUser";
-import Avatar from "@/app/components/Avatar";
-import AvatarGroup from "@/app/components/AvatarGroup";
 
 interface ConversationBoxProps {
   data: FullConversationType,
@@ -75,18 +72,20 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         items-center 
         space-x-3 
         p-3 
-        hover:bg-neutral-100
+        hover:bg-[#3a38b0d5]
         rounded-lg
         transition
         cursor-pointer
+        text-slate-200
         `,
-        selected ? "bg-neutral-100" : "bg-white"
+        selected ? "bg-[#3a38b0d5]" : "bg-[#141351]"
       )}
-    > {data.isGroup ? (
+    > 
+    {/* {data.isGroup ? (
       <AvatarGroup users={data.users} />
     ) : (
       <Avatar user={otherUser} />
-    )}
+    )} */}
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <span className="absolute inset-0" aria-hidden="true" />
@@ -94,7 +93,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
             <p
               className=" 
                 text-md 
-                text-gray-900 
+                text-slate-300
                 font-medium"
             >
               {data.name || otherUser?.name}
@@ -117,7 +116,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
           truncate 
           text-sm
           `,
-              hasSeen ? "text-gray-500" : "text-black font-medium"
+              hasSeen ? "text-[#b1b7fc]" : "text-gray-500 font-medium"
             )}
           >
             {lastMessageText}

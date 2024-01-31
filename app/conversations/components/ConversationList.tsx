@@ -1,17 +1,20 @@
-'use client';
+"use client";
 
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
-import { MdOutlineGroupAdd } from 'react-icons/md';
+import { MdOutlineGroupAdd } from "react-icons/md";
 import clsx from "clsx";
-import { find, uniq } from 'lodash';
+import { find, uniq } from "lodash";
 import useConversation from "@/app/hooks/useConversation";
 import { pusherClient } from "@/app/libs/pusher";
 import GroupChatModal from "@/app/components/modals/GroupChatModal";
 import ConversationBox from "./ConversationBox";
 import { FullConversationType } from "@/app/types";
+import Avatar from "@/app/components/Avatar";
+import Input from "@/app/components/inputs/input";
+import ConversationInfo from "./ConversationInfo";
 
 interface ConversationListProps {
   initialItems: FullConversationType[];
@@ -19,9 +22,9 @@ interface ConversationListProps {
   title?: string;
 }
 
-const ConversationList: React.FC<ConversationListProps> = ({ 
-  initialItems, 
-  users
+const ConversationList: React.FC<ConversationListProps> = ({
+  initialItems,
+  users,
 }) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,8 +35,8 @@ const ConversationList: React.FC<ConversationListProps> = ({
   const { conversationId, isOpen } = useConversation();
 
   const pusherKey = useMemo(() => {
-    return session.data?.user?.email
-  }, [session.data?.user?.email])
+    return session.data?.user?.email;
+  }, [session.data?.user?.email]);
 
   useEffect(() => {
     if (!pusherKey) {
@@ -43,17 +46,19 @@ const ConversationList: React.FC<ConversationListProps> = ({
     pusherClient.subscribe(pusherKey);
 
     const updateHandler = (conversation: FullConversationType) => {
-      setItems((current) => current.map((currentConversation) => {
-        if (currentConversation.id === conversation.id) {
-          return {
-            ...currentConversation,
-            messages: conversation.messages
-          };
-        }
+      setItems((current) =>
+        current.map((currentConversation) => {
+          if (currentConversation.id === conversation.id) {
+            return {
+              ...currentConversation,
+              messages: conversation.messages,
+            };
+          }
 
-        return currentConversation;
-      }));
-    }
+          return currentConversation;
+        })
+      );
+    };
 
     const newHandler = (conversation: FullConversationType) => {
       setItems((current) => {
@@ -61,52 +66,55 @@ const ConversationList: React.FC<ConversationListProps> = ({
           return current;
         }
 
-        return [conversation, ...current]
+        return [conversation, ...current];
       });
-    }
+    };
 
     const removeHandler = (conversation: FullConversationType) => {
       setItems((current) => {
-        return [...current.filter((convo) => convo.id !== conversation.id)]
+        return [...current.filter((convo) => convo.id !== conversation.id)];
       });
-    }
+    };
 
-    pusherClient.bind('conversation:update', updateHandler)
-    pusherClient.bind('conversation:new', newHandler)
-    pusherClient.bind('conversation:remove', removeHandler)
+    pusherClient.bind("conversation:update", updateHandler);
+    pusherClient.bind("conversation:new", newHandler);
+    pusherClient.bind("conversation:remove", removeHandler);
   }, [pusherKey, router]);
+
+  console.log(items);
 
   return (
     <>
-      <GroupChatModal 
-        users={users} 
-        isOpen={isModalOpen} 
+      <GroupChatModal
+        users={users}
+        isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-      <aside className={clsx(`
+      <aside
+        className={clsx(
+          `
         fixed 
         inset-y-0 
         pb-20
         lg:pb-0
-        lg:left-20 
-        lg:w-80 
+        lg:left-0 
+        lg:w-96 
         lg:block
         overflow-y-auto 
-        border-r 
-        border-gray-200 
-      `, isOpen ? 'hidden' : 'block w-full left-0')}>
+      `,
+          isOpen ? "hidden" : "block w-full left-0"
+        )}
+      >
         <div className="px-5">
           <div className="flex justify-between mb-4 pt-4">
-            <div className="text-2xl font-bold text-neutral-800">
-              New chat
-            </div>
-            <div 
-              onClick={() => setIsModalOpen(true)} 
+            <div className="text-2xl font-bold text-slate-200">New chat</div>
+            <div
+              onClick={() => setIsModalOpen(true)}
               className="
                 rounded-full 
                 p-2 
-                bg-gray-100 
-                text-gray-600 
+                bg-[#3a38b0d5]
+                text-slate-100
                 cursor-pointer 
                 hover:opacity-75 
                 transition
@@ -123,9 +131,20 @@ const ConversationList: React.FC<ConversationListProps> = ({
             />
           ))}
         </div>
+        <div
+          className="
+        fixed
+        bottom-3
+        left-6
+        "
+        >
+          <div className="flex items-center justify-center">
+            <ConversationInfo/>
+          </div>
+        </div>
       </aside>
     </>
-   );
-}
- 
+  );
+};
+
 export default ConversationList;
