@@ -4,6 +4,13 @@
 
 html,
 body,
-:root{
+:root {
   height: 100%;
+}
+
+.background {
+  background-image: url("../public/images/Group\ 1.png");
+  background-position: -450px;
+  background-size: 244vh;
+  background-repeat: no-repeat;
 }

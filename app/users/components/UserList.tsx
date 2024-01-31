@@ -34,7 +34,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
                 py-4
               "
           >
-            People
+            ASSISTANT AI
           </div>
         </div>
         {items.map((item) => (
