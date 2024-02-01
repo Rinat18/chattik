@@ -41,13 +41,12 @@ const Form = () => {
     <div
       className="py-4 
         px-4 
-        border-t 
         flex 
         items-center 
         gap-2 
         lg:gap-4 
         w-full
-        bg-[#D9D9D9]
+        bg-[#252784]
         "
     >
       <CldUploadButton
@@ -55,7 +54,7 @@ const Form = () => {
         onUpload={handleUpload}
         uploadPreset="bcspyf5d"
       >
-        <IoImagesOutline size={30} className="text-[#141351]" />
+        <IoImagesOutline size={30} className="text-gray-200" />
       </CldUploadButton>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -73,13 +72,13 @@ const Form = () => {
           className="
             rounded-full 
             p-2 
-            bg-[#141351] 
+            bg-gray-200 
             cursor-pointer 
             hover:bg-[#3A38B0] 
             transition
           "
         >
-          <IoSendOutline  size={18} className="text-white" />
+          <IoSendOutline  size={18} className="text-[#141351] " />
         </button>
       </form>
     </div>

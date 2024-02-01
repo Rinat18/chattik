@@ -41,7 +41,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
         <Avatar user={data.sender} />
       </div>
       <div className={body}>
-        <div className="flex items-center gap-1 ">
+        <div className="flex items-center gap-1">
           <div className="text-sm text-gray-700">{data.sender.name}</div>
           <div className="text-xs text-gray-600">
             {format(new Date(data.createdAt), "p")}
