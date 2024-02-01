@@ -17,7 +17,7 @@ const EmptyState = () => {
 
     >
       <div className="text-center items-center flex flex-col">
-        <h3 className="mt-2 text-2xl font-semibold text-gray-900">
+        <h3 className="mt-2 text-2xl font-semibold text-gray-200">
           <div>
             <Image
               height="48"
@@ -27,7 +27,7 @@ const EmptyState = () => {
               alt="Logo"
             ></Image>
           </div>
-          How can I help you today?
+          Start Chat
         </h3>
       </div>
     </div>

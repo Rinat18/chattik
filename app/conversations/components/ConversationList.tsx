@@ -98,9 +98,11 @@ const ConversationList: React.FC<ConversationListProps> = ({
         pb-20
         lg:pb-0
         lg:left-0 
-        lg:w-96 
+        lg:w-[70vh] 
         lg:block
         overflow-y-auto 
+        border-siderBar
+
       `,
           isOpen ? "hidden" : "block w-full left-0"
         )}
@@ -139,7 +141,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
         "
         >
           <div className="flex items-center justify-center">
-            <ConversationInfo/>
+            <ConversationInfo />
           </div>
         </div>
       </aside>

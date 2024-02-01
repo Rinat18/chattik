@@ -69,6 +69,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages = [] }) => {
           isLast={i === messages.length - 1}
           key={message.id}
           data={message}
+          
         />
       ))}
       <div className="pt-24" ref={bottomRef} />

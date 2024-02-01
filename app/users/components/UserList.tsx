@@ -22,6 +22,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
           border-r 
           border-gray-200
           block w-full left-0
+          border-siderBar
         "
     >
       <div className="px-5">

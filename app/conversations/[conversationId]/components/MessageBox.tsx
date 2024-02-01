@@ -77,6 +77,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
             text-xs 
             font-light 
             text-gray-500
+            
             "
           >
           </div>
