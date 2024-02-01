@@ -30,10 +30,10 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
   const body = clsx("flex flex-col gap-2", isOwn && "items-end");
   const message = clsx(
     "text-sm w-fit overflow-hidden",
-    isOwn ? "bg-sky-500 text-white" : "bg-gray-100",
-    data.image ? "rounded-md p-0" : "rounded-full py-2 px-3"
+    isOwn ? "bg-gray-100" : "bg-gray-100",
+    data.image ? "rounded-md p-0" : "rounded-md py-2 px-3"
   );
-
+    
   return (
     <div className={style.module}>
     <div className={container}>
@@ -42,8 +42,8 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
       </div>
       <div className={body}>
         <div className="flex items-center gap-1 ">
-          <div className="text-sm text-gray-500">{data.sender.name}</div>
-          <div className="text-xs text-gray-400">
+          <div className="text-sm text-gray-700">{data.sender.name}</div>
+          <div className="text-xs text-gray-600">
             {format(new Date(data.createdAt), "p")}
           </div>
         </div>
@@ -79,7 +79,6 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
             text-gray-500
             "
           >
-            {`Seen by ${seenList}`}
           </div>
         )}
       </div>

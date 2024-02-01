@@ -9,8 +9,6 @@ body,
 }
 
 .background {
-  background-image: url("../public/images/Group\ 1.png");
-  background-position: -450px;
-  background-size: 244vh;
+  background-image: url("../public/images/bg-chat.jpeg");
   background-repeat: no-repeat;
 }
