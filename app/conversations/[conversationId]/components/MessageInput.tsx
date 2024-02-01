@@ -21,22 +21,15 @@ const MessageInput: React.FC<MessageInputProps> = ({
   register,
   errors,
 }) => {
-  
-  let [messagetype, setMessageType] = useState("")
-  useEffect(() => {
-    console.log(messagetype);
-    
-  }, [messagetype])
-  return (
-    <div className="relative w-full">
-      <input
-        id={id}
-        type={type}
-        autoComplete={id}
-        {...register(id, { required })}
-        onChange={(e) => setMessageType(e.target.value)}
-        placeholder={placeholder}
-        className="
+    return(
+        <div className="relative w-full ">
+        <input
+          id={id}
+          type={type}
+          autoComplete={id}
+          {...register(id, { required })}
+          placeholder={placeholder}
+          className="
             text-black
             font-light
             py-2
