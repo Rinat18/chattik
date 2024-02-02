@@ -1,7 +1,6 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import LoadingConversation from "../../components/LoadingConversation";
 
 interface MessageInputProps {
   placeholder?: string;
@@ -12,7 +11,6 @@ interface MessageInputProps {
   errors: FieldErrors;
 }
 
-
 const MessageInput: React.FC<MessageInputProps> = ({
   placeholder,
   id,
@@ -21,15 +19,15 @@ const MessageInput: React.FC<MessageInputProps> = ({
   register,
   errors,
 }) => {
-    return(
-        <div className="relative w-full ">
-        <input
-          id={id}
-          type={type}
-          autoComplete={id}
-          {...register(id, { required })}
-          placeholder={placeholder}
-          className="
+  return (
+    <div className="relative w-full">
+      <input
+        id={id}
+        type={type}
+        autoComplete={id}
+        {...register(id, { required })}
+        placeholder={placeholder}
+        className="
             text-black
             font-light
             py-2
