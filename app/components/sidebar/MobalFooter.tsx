@@ -1,7 +1,7 @@
 "use client";
 
 import useConversation from "@/app/hooks/useConversation";
-import useRoutes from "@/app/hooks/useRoutes"
+import useRoutes from "@/app/hooks/useRoutes";
 import MobileItem from "./MobileItem";
 
 const MobalFooter = () => {
@@ -26,7 +26,7 @@ const MobalFooter = () => {
           lg:hidden
         "
     >
-      {routes.map((route) => (
+      {routes.map((route: any) => (
         <MobileItem
           key={route.href}
           href={route.href}
